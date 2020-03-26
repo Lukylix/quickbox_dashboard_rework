@@ -26,9 +26,9 @@ foreach ($servicesConfig as $configData) {
 require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/localize.php');
 
 // Network Interface
-$interface = 'eno1';
-$iface_list = array('eno1');
-$iface_title['eno1'] = 'External';
+$interface = '"eno1"';
+$iface_list = array('"eno1"');
+$iface_title['"eno1"'] = 'External';
 $vnstat_bin = '/usr/bin/vnstat';
 $data_dir = './dumps';
 $byte_notation = null;
