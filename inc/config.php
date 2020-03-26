@@ -3,6 +3,10 @@ if (isset($_SESSION)) {
   session_destroy();
 }
 
+
+
+
+
 include '/srv/panel/inc/util.php';
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/class.php');
 $version = "v1.2.0";
@@ -10,6 +14,14 @@ error_reporting(E_ERROR);
 $master = file_get_contents('/srv/panel/db/master.txt');
 $master = preg_replace('/\s+/', '', $master);
 $username = getUser();
+
+
+include('/srv/panel/inc/services/config.php');
+//$services is a tab of all Service object for vues / logic
+$services = [];
+foreach ($servicesConfig as $configData) {
+  $services[$configData[0]] = new Service($configData);
+}
 
 require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/localize.php');
 
@@ -265,61 +277,6 @@ function session_start_timeout($timeout = 5, $probability = 100, $cookie_domain 
 session_start_timeout(5);
 $MSGFILE = session_id();
 
-
-function processes($username)
-{
-  return shell_exec("ps -fu $username");
-}
-define('USERNAME', getUser());
-define('USER_RUNNING', processes($username));
-include($_SERVER['DOCUMENT_ROOT'] . '/inc/service_model.php');
-
-$servicesConfig = [
-  ['bazarr', 'http' => true],
-  ['btsync', 'url' => ':8888/gui', 'http' => true, 'psName' => 'resilio-sync', 'psUser' => 'rslsync', 'displayName' => 'BTSync'],
-  ['couchpotato', 'displayName' => 'CouchPotato'],
-  ['csf', 'url' => ':3443', 'psName' => 'lfd', 'psUser' => 'root', 'displayName' => 'CSF (firewall)'],
-  //['deluge', 'process' => false],
-  ['deluged', 'menu' => false, 'displayName'=> 'DelugeD'],
-  ['deluged-web', 'displayName' => 'Deluge Web'],
-  ['emby', 'psName' => 'EmbyServer', 'psUser' => 'emby'],
-  ['filebrowser'],
-  ['flood'],
-  ['headphones', 'url' => '/headphones/home'],
-  ['jackett'],
-  ['lounge', 'url' => '/irc', 'psUser' => 'lounge', 'displayName' => 'The Lounge'],
-  ['lidarr', 'http' => true],
-  ['medusa'],
-  ['netdata', 'psUser' => 'netdata'],
-  ['nextcloud', 'process' => false, 'displayName' => 'NextCloud'],
-  ['nzbget', 'displayName' => 'NZBGet'],
-  ['nzbhydra', 'displayName' => 'NZBHydra'],
-  ['plex', 'url' => ':32400/web/', 'http' => true, 'psName' => 'Plex', 'psUser' => 'plex'],
-  ['tautulli', 'psName' => 'Tautulli', 'psUser' => 'tautulli'],
-  ['ombi'],
-  ['pyload', 'url' => '/pyload/login', 'displayName' => 'pyLoad'],
-  ['radarr'],
-  ['rapidleech', 'process' => false],
-  ['rutorrent', 'process' => false, 'displayName' => 'ruTorrent'],
-  ['rtorrent', 'menu' => false],
-  ['sabnzbd', 'displayName' => 'SABnzbd'],
-  ['sickgear', 'displayName' => 'SickGear'],
-  ['sickchill', 'displayName' => 'SickChill'],
-  ['sonarr', 'psName' => 'nzbdrone'],
-  ['subsonic'],
-  ['syncthing'],
-  ['znc', 'url' => ":$zport", 'http' => $zssl ? false : true, 'displayName' => 'ZNC'],
-  ['autodl' ,'menu' => false, 'psName'=> 'irssi', 'displayName'=> 'AutoDL-irssi'],
-  ['quassel', 'menu' => false],
-  ['shellinabox', 'menu' => false, 'psUser' => 'shellinabox']
-];
-
-// $services is a tab of all Service object for vues / logic
-$services = [];
-foreach ($servicesConfig as $configData) {
-  $services[$configData[0]] = new Service($configData);
-}
-
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/lang_select.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/plugin_data.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/package_data.php');
@@ -330,7 +287,7 @@ $location = "/home";
 
 /* check for services */
 switch (intval($_GET['id'])) {
-  
+
     /* enable & start services */
   case 66:
     $process = $_GET['serviceenable'];
