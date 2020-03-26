@@ -128,9 +128,6 @@ switch (PHP_OS) {
   case "FreeBSD":
     $sysReShow = (false !== ($sysInfo = sys_freebsd())) ? "show" : "none";
     break;
-
-  default:
-    break;
 }
 
 //linux system detects
@@ -273,45 +270,46 @@ function processes($username)
 {
   return shell_exec("ps -fu $username");
 }
+define('USERNAME', getUser());
 define('USER_RUNNING', processes($username));
 include($_SERVER['DOCUMENT_ROOT'] . '/inc/service_model.php');
 
 $servicesConfig = [
   ['bazarr', 'http' => true],
-  ['btsync', 'url' => ':8888/gui', 'http' => true, 'psName' => 'resilio-sync', 'psUser' => 'rslsync'],
-  ['couchpotato'],
-  ['csf', 'url' => ':3443', 'psName' => 'lfd', 'psUser' => 'root'],
-  ['deluge', 'process' => false],
-  ['deluged', 'menu' => false],
-  ['delugedweb', 'menu' => false],
+  ['btsync', 'url' => ':8888/gui', 'http' => true, 'psName' => 'resilio-sync', 'psUser' => 'rslsync', 'displayName' => 'BTSync'],
+  ['couchpotato', 'displayName' => 'CouchPotato'],
+  ['csf', 'url' => ':3443', 'psName' => 'lfd', 'psUser' => 'root', 'displayName' => 'CSF (firewall)'],
+  //['deluge', 'process' => false],
+  ['deluged', 'menu' => false, 'displayName'=> 'DelugeD'],
+  ['deluged-web', 'displayName' => 'Deluge Web'],
   ['emby', 'psName' => 'EmbyServer', 'psUser' => 'emby'],
   ['filebrowser'],
   ['flood'],
   ['headphones', 'url' => '/headphones/home'],
   ['jackett'],
-  ['lounge', 'url' => '/irc', 'psUser' => 'lounge'],
+  ['lounge', 'url' => '/irc', 'psUser' => 'lounge', 'displayName' => 'The Lounge'],
   ['lidarr', 'http' => true],
   ['medusa'],
   ['netdata', 'psUser' => 'netdata'],
-  ['nextcloud', 'process' => false],
-  ['nzbget'],
-  ['nzbhydra'],
+  ['nextcloud', 'process' => false, 'displayName' => 'NextCloud'],
+  ['nzbget', 'displayName' => 'NZBGet'],
+  ['nzbhydra', 'displayName' => 'NZBHydra'],
   ['plex', 'url' => ':32400/web/', 'http' => true, 'psName' => 'Plex', 'psUser' => 'plex'],
   ['tautulli', 'psName' => 'Tautulli', 'psUser' => 'tautulli'],
   ['ombi'],
-  ['pyload', 'url' => '/pyload/login'],
+  ['pyload', 'url' => '/pyload/login', 'displayName' => 'pyLoad'],
   ['radarr'],
   ['rapidleech', 'process' => false],
-  ['rutorrent', 'process' => false],
+  ['rutorrent', 'process' => false, 'displayName' => 'ruTorrent'],
   ['rtorrent', 'menu' => false],
-  ['sabnzbd'],
-  ['sickgear'],
-  ['sickchill'],
+  ['sabnzbd', 'displayName' => 'SABnzbd'],
+  ['sickgear', 'displayName' => 'SickGear'],
+  ['sickchill', 'displayName' => 'SickChill'],
   ['sonarr', 'psName' => 'nzbdrone'],
   ['subsonic'],
   ['syncthing'],
-  ['znc', 'url' => ":$zport", 'http' => $zssl ? false : true],
-  ['irrssi', 'menu' => false],
+  ['znc', 'url' => ":$zport", 'http' => $zssl ? false : true, 'displayName' => 'ZNC'],
+  ['autodl' ,'menu' => false, 'psName'=> 'irssi', 'displayName'=> 'AutoDL-irssi'],
   ['quassel', 'menu' => false],
   ['shellinabox', 'menu' => false, 'psUser' => 'shellinabox']
 ];
@@ -321,21 +319,6 @@ $services = [];
 foreach ($servicesConfig as $configData) {
   $services[$configData[0]] = new Service($configData);
 }
-foreach ($services as $service) {
-  ${$service->name . 'URL'} = $service->url;
-}
-
-
-function isEnabled($service, $username)
-{
-  if (file_exists('/etc/systemd/system/multi-user.target.wants/' . $service . '@' . $username . '.service') || file_exists('/etc/systemd/system/multi-user.target.wants/' . $service . '.service')) {
-    return " <div class=\"toggle-wrapper text-center\"> <div class=\"toggle-en toggle-light primary\" onclick=\"location.href='?id=77&servicedisable=$service'\"></div></div>";
-  } else {
-    return " <div class=\"toggle-wrapper text-center\"> <div class=\"toggle-dis toggle-light primary\" onclick=\"location.href='?id=66&serviceenable=$service'\"></div></div>";
-  }
-}
-
-
 
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/lang_select.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/plugin_data.php');
@@ -347,78 +330,7 @@ $location = "/home";
 
 /* check for services */
 switch (intval($_GET['id'])) {
-  case 0:
-    $rtorrent = isEnabled("rtorrent", $username);
-    $cbodyr .= $rtorrent;
-    $irssi = isEnabled("irssi", $username);
-    $cbodyi .= $irssi;
-    $deluged = isEnabled("deluged", $username);
-    $cbodyd .= $deluged;
-    $delugedweb = isEnabled("deluge-web", $username);
-    $cbodydw .= $delugedweb;
-    $shellinabox = isEnabled("shellinabox", 'shellinabox');
-    $wcbodyb .= $shellinabox;
-    $bazarr = isEnabled("bazarr", $username);
-    $cbodybaz .= $bazarr;
-    $btsync = isEnabled("resilio-sync", 'rslsync');
-    $cbodyb .= $btsync;
-    $couchpotato = isEnabled("couchpotato", $username);
-    $cbodycp .= $couchpotato;
-    $emby = isEnabled("emby-server", $username);
-    $cbodye .= $emby;
-    $filebrowser = isEnabled("filebrowser", $username);
-    $cbodyfileb .= $filebrowser;
-    $flood = isEnabled("flood", $username);
-    $cbodyf .= $flood;
-    $headphones = isEnabled("headphones", $username);
-    $cbodyhp .= $headphones;
-    $jackett = isEnabled("jackett", $username);
-    $cbodyj .= $jackett;
-    $lidarr = isEnabled("lidarr", $username);
-    $cbodylidarr .= $lidarr;
-    $lounge = isEnabled("lounge", 'lounge');
-    $cbodylounge .= $lounge;
-    $medusa = isEnabled("medusa", $username);
-    $cbodymed .= $medusa;
-    $netdata = isEnabled("netdata", 'netdata');
-    $cbodynet .= $netdata;
-    $nzbget = isEnabled("nzbget", $username);
-    $cbodynzg .= $nzbget;
-    $nzbhydra = isEnabled("nzbhydra", $username);
-    $cbodynzb .= $nzbhydra;
-    $ombi = isEnabled("ombi", $username);
-    $cbodypr .= $ombi;
-    $plex = isEnabled("plexmediaserver", 'plex');
-    $cbodyp .= $plex;
-    $tautulli = isEnabled("tautulli", 'tautulli');
-    $cbodypp .= $tautulli;
-    $pyload = isEnabled("pyload", $username);
-    $cbodypl .= $pyload;
-    $quassel = isEnabled("quassel", $username);
-    $cbodyq .= $quassel;
-    $radarr = isEnabled("radarr", $username);
-    $cbodyrad .= $radarr;
-    $rapidleech = isEnabled("rapidleech", $username);
-    $cbodyrl .= $rapidleech;
-    $sabnzbd = isEnabled("sabnzbd", $username);
-    $cbodysz .= $sabnzbd;
-    $sickgear = isEnabled("sickgear", $username);
-    $cbodysg .= $sickgear;
-    $sickchill = isEnabled("sickchill", $username);
-    $cbodysr .= $sickchill;
-    $sonarr = isEnabled("sonarr", $username);
-    $cbodys .= $sonarr;
-    $subsonic = isEnabled("subsonic", 'root');
-    $cbodyss .= $subsonic;
-    $syncthing = isEnabled("syncthing", $username);
-    $cbodyst .= $syncthing;
-    $x2go = isEnabled("x2go", $username);
-    $cbodyx .= $x2go;
-    $znc = isEnabled("znc", $username);
-    $cbodyz .= $znc;
-
-    break;
-
+  
     /* enable & start services */
   case 66:
     $process = $_GET['serviceenable'];

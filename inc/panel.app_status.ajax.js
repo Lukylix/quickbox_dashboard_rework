@@ -85,13 +85,13 @@ $(document).ready(function() {
   appstat_headphones();
 
   // <<-------- IRSSI -------->> //
-  function appstat_irssi() {
-    $.ajax({url: "widgets/app_status/app_status_irssi.php", cache:false, success: function (result) {
-      $('#appstat_irssi').html(result);
-      setTimeout(function(){appstat_irssi()}, 5000);
+  function appstat_autodl() {
+    $.ajax({url: "widgets/app_status/app_status_autodl.php", cache:false, success: function (result) {
+      $('#appstat_autodl').html(result);
+      setTimeout(function(){appstat_autodl()}, 5000);
     }});
   }
-  appstat_irssi();
+  appstat_autodl();
 
   // <<-------- JACKETT -------->> //
   function appstat_jackett() {

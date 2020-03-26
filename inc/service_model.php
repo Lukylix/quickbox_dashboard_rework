@@ -16,24 +16,37 @@ class Service
     $this->hydrate($data);
     $this->default();
     if ($this->menu) $this->url = ($this->http ? 'http' : 'https') . '://' . $_SERVER['HTTP_HOST'] . $this->url;
-    if ($this->process) $this->processExists();
+    if ($this->process) {
+      $this->processExists();
+    }
   }
 
   private function processExists()
   {
-    if (isset($this->psUser)) {
+    if (!isset($this->psUser) || $this->psUser == '') {
       if (stripos(USER_RUNNING, $this->psName) !== false) $this->exist = true;
     } else {
-      exec("ps -fu $this->psUser | grep -iE $this->psName | grep -v grep", $pids);
+      exec("ps -fu " . $this->psUser . " | grep -iE " . $this->psName . " | grep -v grep", $pids);
       if (count($pids) > 0) $this->exist = true;
+    }
+  }
+
+  //Call this function if you need to display html
+  function getHtmlSwitch()
+  {
+    if (file_exists('/etc/systemd/system/multi-user.target.wants/' . $this->psName . '@' . (isset($this->psUser) && $this->psUser != '' ? $this->psUser : USERNAME) . '.service') || file_exists('/etc/systemd/system/multi-user.target.wants/' .  $this->psName . '.service')) {
+      return " <div class=\"toggle-wrapper text-center\"> <div class=\"toggle-en toggle-light primary\" onclick=\"location.href='?id=77&servicedisable=" . $this->psName . "'\"></div></div>";
+    } else {
+      return " <div class=\"toggle-wrapper text-center\"> <div class=\"toggle-dis toggle-light primary\" onclick=\"location.href='?id=66&serviceenable=" . $this->psName . "'\"></div></div>";
     }
   }
 
   private function
   default()
   {
-    if (!isset($this->url) or $this->url == '') $this->url = '/' . $this->name;
-    if (!isset($this->displayName) or $this->url == '') $this->displayName = ucfirst($this->name);
+    if (!isset($this->url) || $this->url == '') $this->url = '/' . $this->name;
+    if (!isset($this->displayName) || $this->url == '') $this->displayName = ucfirst($this->name);
+    if (!isset($this->psName) || $this->psName == '') $this->psName = $this->name;
   }
 
   private function hydrate(array $data)

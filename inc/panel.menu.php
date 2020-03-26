@@ -162,102 +162,15 @@ $current_vs = "<span id=\"version-result\"></span>";
           <div class="tab-pane active" id="mainmenu">
             <h5 class="sidebar-title"><?php echo T('MAIN_MENU'); ?></h5>
             <ul class="nav nav-pills nav-stacked nav-quirk">
-              <!--li class="active"><a href="index.php"><i class="fa fa-home"></i> <span>Dashboard</span></a></li-->
-              <?php if (file_exists('/install/.rutorrent.lock')) { ?>
-                <li><a class="grayscale" href="<?php echo "$rutorrentURL"; ?>" target="_blank"><img src="img/brands/rtorrent.png" class="brand-ico"> <span>ruTorrent</span></a></li>
-              <?php } ?>
-              <?php if ($services['flood']->exist && file_exists('/install/.flood.lock')) { ?>
-                <li><a class="grayscale" href="<?php echo "$floodURL"; ?>" target="_blank"><img src="img/brands/flood.png" class="brand-ico"> <span>Flood</span></a></li>
-              <?php } ?>
-              <?php if ($services['deluge-web']->exist && file_exists('/install/.deluge.lock')) { ?>
-                <li><a class="grayscale" href="<?php echo "$dwURL"; ?>" target="_blank"><img src="img/brands/deluge.png" class="brand-ico"> <span>Deluge Web</span></a></li>
-              <?php } ?>
-              <?php if (file_exists('/install/.nzbget.lock')) { ?>
-                <li><a class="grayscale" href="<?php echo "$nzbgetURL"; ?>" target="_blank"><img src="img/brands/nzbget.png" class="brand-ico"> <span>NZBGet</span></a></li>
-              <?php } ?>
-              <?php if ($services['lounge']->exist && file_exists('/install/.lounge.lock')) { ?>
-                <li><a class="grayscale" href="<?php echo "$loungeURL"; ?>" target="_blank"><img src="img/brands/lounge.svg" class="brand-ico"> <span>The Lounge</span></a></li>
-              <?php } ?>
-              <?php if ($username == "$master") { ?>
-                <?php if ($services['btsync']->exist && file_exists('/install/.btsync.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$btsyncURL"; ?>" target="_blank"><img src="img/brands/btsync.png" class="brand-ico"> <span>BTSync</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.bazarr.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$bazarrURL"; ?>" target="_blank"><img src="img/brands/bazarr.png" class="brand-ico"> <span>Bazarr</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.couchpotato.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$cpURL"; ?>" target="_blank"><img src="img/brands/couchpotato.png" class="brand-ico"> <span>CouchPotato</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.csf.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$csfURL"; ?>" target="_blank"><img src="img/brands/csf.png" class="brand-ico"> <span>CSF (firewall)</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.emby.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$embyURL"; ?>" target="_blank"><img src="img/brands/emby.png" class="brand-ico"> <span>Emby</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.filebrowser.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$filebrowserURL"; ?>" target="_blank"><img src="img/brands/filebrowser.png" class="brand-ico"> <span>Filebrowser</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.headphones.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$headphonesURL"; ?>" target="_blank"><img src="img/brands/headphones.png" class="brand-ico"> <span>Headphones</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.jackett.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$jackettURL"; ?>" target="_blank"><img src="img/brands/jackett.png" class="brand-ico"> <span>Jackett</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.lidarr.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$lidarrURL"; ?>" target="_blank"><img src="img/brands/lidarr.png" class="brand-ico"> <span>Lidarr</span></a></li>
-                <?php } ?>
-                <?php if ($services['medusa']->exist && file_exists('/install/.medusa.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$medusaURL"; ?>" target="_blank"><img src="img/brands/medusa.png" class="brand-ico"> <span>Medusa</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.netdata.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$netdataURL"; ?>" target="_blank"><img src="img/brands/netdata.png" class="brand-ico"> <span>Netdata</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.nextcloud.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$nextcloudURL"; ?>" target="_blank"><img src="img/brands/nextcloud.png" class="brand-ico"> <span>NextCloud</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.nzbhydra.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$nzbhydraURL"; ?>" target="_blank"><img src="img/brands/nzbhydra.png" class="brand-ico"> <span>NZBHydra</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.plex.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$plexURL"; ?>" target="_blank"><img src="img/brands/plex.png" class="brand-ico"> <span>Plex</span></a></li>
-                <?php } ?>
-                <?php if (file_exists("/install/.tautulli.lock")) { ?>
-                  <li><a class="grayscale" href="<?php echo "$tautulliURL"; ?>" target="_blank"><img src="img/brands/tautulli.png" class="brand-ico"> <span>Tautulli</span></a></li>
-                <?php } ?>
-                <?php if (file_exists("/install/.ombi.lock")) { ?>
-                  <li><a class="grayscale" href="<?php echo "$ombiURL"; ?>" target="_blank"><img src="img/brands/plexrequests-net.png" class="brand-ico"> <span>Ombi</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.pyload.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$pyloadURL"; ?>" target="_blank"><img src="img/brands/pyload.png" class="brand-ico"> <span>pyLoad</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.radarr.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$radarrURL"; ?>" target="_blank"><img src="img/brands/radarr.png" class="brand-ico"> <span>Radarr</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.rapidleech.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$rapidleechURL"; ?>" target="_blank"><img src="img/brands/rapidleech.png" class="brand-ico"> <span>Rapidleech</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.sabnzbd.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$sabnzbdURL"; ?>" target="_blank"><img src="img/brands/sabnzbd.png" class="brand-ico"> <span>SABnzbd</span></a></li>
-                <?php } ?>
-                <?php if ($services['sickgear']->exist && file_exists('/install/.sickgear.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$sickgearURL"; ?>" target="_blank"><img src="img/brands/sickgear.png" class="brand-ico"> <span>SickGear</span></a></li>
-                <?php } ?>
-                <?php if ($services['sickchill']->exist && file_exists('/install/.sickchill.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$sickchillURL"; ?>" target="_blank"><img src="img/brands/sickchill.png" class="brand-ico"> <span>SickChill</span></a></li>
-                <?php } ?>
-                <?php if ($services['sonnar']->exist && file_exists('/install/.sonarr.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$sonarrURL"; ?>" target="_blank"><img src="img/brands/sonarr.png" class="brand-ico"> <span>Sonarr</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.subsonic.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$subsonicURL"; ?>" target="_blank"><img src="img/brands/subsonic.png" class="brand-ico"> <span>Subsonic</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.syncthing.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$syncthingURL"; ?>" target="_blank"><img src="img/brands/syncthing.png" class="brand-ico"> <span>Syncthing</span></a></li>
-                <?php } ?>
-                <?php if (file_exists('/install/.znc.lock')) { ?>
-                  <li><a class="grayscale" href="<?php echo "$zncURL"; ?>" target="_blank"><img src="img/brands/znc.png" class="brand-ico"> <span>ZNC</span></a></li>
-                <?php } ?>
-              <?php } ?>
+              <?php
+              foreach ($services as $nom => $service) :
+                if ($service->menu) :
+                  if ($service->exist || (!$service->process && file_exists('/install/.' . $nom . '.lock'))) : ?>
+                    <li><a href="<?php echo $service->url ?>" target="_blank"><img src="img/brands/<?php echo $nom . ($nom == 'lounge' ? '.svg' : '.png') ?>" class="brand-ico"> <span><?php echo $service->displayName ?></span></a></li>
+              <?php
+                  endif;
+                endif;
+              endforeach; ?>
               <?php if (file_exists('/install/.rtorrent.lock') || file_exists('/install/.deluge.lock') || file_exists('/install/.flood.lock')) { ?>
                 <li class="nav-parent">
                   <a href=""><i class="fa fa-download"></i> <span><?php echo T('DOWNLOADS'); ?></span></a>
@@ -376,7 +289,6 @@ $current_vs = "<span id=\"version-result\"></span>";
               </li>
             </ul>
           </div><!-- tab-pane -->
-
         </div><!-- tab-content -->
       </div><!-- leftpanelinner -->
     </div><!-- leftpanel -->
