@@ -12,9 +12,6 @@ switch(PHP_OS)
   case "FreeBSD":
     $sysReShow = (false !== ($sysInfo = sys_freebsd()))?"show":"none";
   break;
-
-  default:
-  break;
 }
 
 //linux system detects

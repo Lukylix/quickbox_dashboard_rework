@@ -527,50 +527,6 @@
   </div><!-- modal-dialog -->
 </div><!-- modal -->
 
-<!-- VERSION UPDATE CHECK MODAL >
-<div class="modal bounceIn animated" id="versionChecker" tabindex="-1" role="dialog" aria-labelledby="VersionChecker" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="VersionChecker">Select Your Update Branch</h4>
-      </div>
-      <div class="modal-body">
-        Take your pick between updates.<br/><br/>Select to update your dashboard on the Stable branches (fully tested) or opt to hop on our Testing branches. <br/><br/>You may run the update interchangeably and swap back to a stable branch and visa versa.
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <a href="?updatetestingQuickBox=true" class="btn btn-primary" data-toggle="modal" data-target="#sysResponse" data-dismiss="modal" aria-label="Close">TESTING</a>
-        <a href="?updateQuickBox=true" class="btn btn-success" data-toggle="modal" data-target="#sysResponse" data-dismiss="modal" aria-label="Close">STABLE</a>
-      </div>
-    </div><!-- modal-content ->
-  </div><!-- modal-dialog ->
-</div><!-- modal -->
-
-<!-- COMMIT COMPARISON MODAL >
-<div class="modal bounceIn animated" id="commitComparison" tabindex="-1" role="dialog" aria-labelledby="CommitComparison" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="CommitComparison">Choose A Module For Comparison</h4>
-      </div>
-      <div class="modal-body">
-        Dashboard - <a href="https://github.com/QuickBox/quickbox_dashboard/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-        Packages - <a href="https://github.com/QuickBox/quickbox_packages/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-        Setup - <a href="https://github.com/QuickBox/quickbox_setup/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-        Themes - <a href="https://github.com/QuickBox/quickbox_themes/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-        RUTorrent - <a href="https://github.com/QuickBox/quickbox_rutorrent/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-        RUTorrent Plugins - <a href="https://github.com/QuickBox/quickbox_rutorrent-plugins/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-        club-QuickBox - <a href="https://github.com/QuickBox/club-QuickBox/compare/<?php echo $version ?>...master" target="blank"><?php echo $version ?> ... latest commit</a><br/>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo T('CANCEL'); ?></button>
-      </div>
-    </div><!-- modal-content ->
-  </div><!-- modal-dialog ->
-</div><!-- modal -->
-
 <!--script src="js/script.js"></script-->
 <script src="lib/jquery-ui/jquery-ui.js"></script>
 <script src="lib/jquery.ui.touch-punch.min.js"></script>

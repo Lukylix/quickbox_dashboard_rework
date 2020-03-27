@@ -16,12 +16,12 @@ $current_vs = "<span id=\"version-result\"></span>";
               <li>
                 <div class="btn-group">
                   <button type="button" class="btn btn-logged">
-                    <a href="#" class="label label-warning" style="">You are on the QuickBox Development Repo</a>
+                    <a href="#" class="label label-warning">You are on the QuickBox Development Repo</a>
                   </button>
                 </div>
               </li>
             <?php } ?>
-            <?php if ($username == "$master") { ?>
+            <?php if (ISADMIN) { ?>
               <li>
                 <div id="noticePanel" class="btn-group">
                   <button class="btn" data-toggle="dropdown">
@@ -134,7 +134,7 @@ $current_vs = "<span id=\"version-result\"></span>";
             <li>
               <div class="btn-group">
                 <button type="button" class="btn btn-logged" data-toggle="dropdown">
-                  <?php echo "$username"; ?>
+                  <?php echo USERNAME; ?>
                   <span class="caret"></span>
                 </button>
                 <?php include("db/branding-m.php"); ?>
@@ -151,10 +151,6 @@ $current_vs = "<span id=\"version-result\"></span>";
         <?php if (file_exists('/install/.foo.lock')) { ?>
           <ul class="nav nav-tabs nav-justified nav-sidebar">
             <li class="tooltips active" data-toggle="tooltip" title="<?php echo T('MAIN_MENU'); ?>" data-placement="bottom"><a data-toggle="tab" data-target="#mainmenu"><i class="tooltips fa fa-ellipsis-h"></i></a></li>
-            <?php if ($username == "$master") { ?>
-              <li class="tooltips" data-toggle="tooltip" title="<?php echo T('RPLUGIN_MENU'); ?>" data-placement="bottom"><a data-toggle="tab" data-target="#plugins"><i class="tooltips fa fa-puzzle-piece"></i></a></li>
-            <?php } ?>
-            <li class="tooltips" data-toggle="tooltip" title="<?php echo T('HELP_COMMANDS'); ?>" data-placement="bottom"><a data-toggle="tab" data-target="#help"><i class="tooltips fa fa-question-circle"></i></a></li>
           </ul>
         <?php } ?>
         <div class="tab-content">
@@ -181,114 +177,17 @@ $current_vs = "<span id=\"version-result\"></span>";
                     <?php if (file_exists('/install/.deluge.lock')) { ?>
                       <li><a href="/deluge.downloads" target="_blank">Deluge</a></li>
                     <?php } ?>
-                    <?php if (file_exists('/home/' . $username . '/public_html/' . $username . '.zip')) { ?>
-                      <li><a href="/~<?php echo "$username"; ?>/<?php echo "$username"; ?>.zip" target="_blank"> <span>OpenVPN Config</span></a></li>
+                    <?php if (file_exists('/home/' . USERNAME . '/public_html/' . USERNAME . '.zip')) { ?>
+                      <li><a href="/~<?php echo USERNAME ?>/<?php echo USERNAME ?>.zip" target="_blank"> <span>OpenVPN Config</span></a></li>
                     <?php } ?>
                   </ul>
                 </li>
               <?php } ?>
-              <?php if ($services['shellinabox']->exist && ($username == "$master")) { ?>
+              <?php if ($services['shellinabox']->exist && ISADMIN) { ?>
                 <li><a href="/shell" target="_blank"><i class="fa fa-keyboard-o"></i> <span><?php echo T('WEB_CONSOLE'); ?></span></a></li>
               <?php } ?>
-              <!-- /// BEGIN INSERT CUSTOM MENU /// -->
-              <?php include($_SERVER['DOCUMENT_ROOT'] . '/custom/custom.menu.php'); ?>
-              <!-- /// END INSERT CUSTOM MENU /// -->
             </ul>
           </div><!-- tab pane -->
-
-          <!-- ######################## HELP MENU TAB ##################### -->
-          <div class="tab-pane" id="help">
-            <h5 class="sidebar-title"><?php echo T('QUICK_SYSTEM_TIPS'); ?></h5>
-            <?php if ($username == "$master") { ?>
-              <ul class="nav nav-pills nav-stacked nav-quirk nav-mail">
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">disktest</span><br />
-                  <small><?php echo T('DISKTEST_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">fixhome</span><br />
-                  <small><?php echo T('FIXHOME_TXT'); ?></small>
-                </li>
-              </ul>
-              <h5 class="sidebar-title"><?php echo T('ADMIN_COMMANDS'); ?></h5>
-              <ul class="nav nav-pills nav-stacked nav-quirk nav-mail">
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">setdisk</span><br />
-                  <small><?php echo T('SETDISK_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">createSeedboxUser</span><br />
-                  <small><?php echo T('CREATESEEDBOXUSER_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">deleteSeedboxUser</span><br />
-                  <small><?php echo T('DELETESEEDBOXUSER_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">changeUserpass</span><br />
-                  <small><?php echo T('CHANGEUSERPASS_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">quickVPN</span><br />
-                  <small><?php echo T('QUICKVPN_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">showspace</span><br />
-                  <small><?php echo T('SHOWSPACE_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradeBTSync</span><br />
-                  <small><?php echo T('UPGRADEBTSYNC_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradeDeluge</span><br />
-                  <small><?php echo T('UPGRADEDELUGE_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradeJackett</span><br />
-                  <small><?php echo T('UPGRADEJACKETT_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradeOmbi</span><br />
-                  <small><?php echo T('UPGRADEOMBI_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradePlex</span><br />
-                  <small><?php echo T('UPGRADEPLEX_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradepyLoad</span><br />
-                  <small><?php echo T('UPGRADEPYLOAD_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">upgradeSABnzbd</span><br />
-                  <small><?php echo T('UPGRADESABNZBD_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">setup-pyLoad</span><br />
-                  <small><?php echo T('SETUPPYLOAD_TXT'); ?></small>
-                </li>
-                <li style="padding: 7px"><span style="font-size: 12px; color:#eee">clean_mem</span><br />
-                  <small><?php echo T('CLEAN_MEM_TXT'); ?></small>
-                </li>
-              </ul>
-            <?php } ?>
-            <h5 class="sidebar-title"><?php echo T('ESSENTIAL_USER_COMMANDS'); ?></h5>
-            <ul class="nav nav-pills nav-stacked nav-quirk nav-mail">
-              <li style="padding: 7px"><span style="font-size: 12px; color:#eee">systemctl restart rtorrent@<?php echo $username ?>.service</span><br />
-                <small><?php echo T('SCREEN_RTORRNENT_TXT'); ?></small></li>
-              <li style="padding: 7px"><span style="font-size: 12px; color:#eee">systemctl restart irssi@<?php echo $username ?>.service</span><br />
-                <small><?php echo T('SCREEN_IRSSI_TXT'); ?></small></li>
-            </ul>
-          </div><!-- tab-pane -->
-
-          <!-- ######################## RUTORRENT PLUGINS TAB ##################### -->
-          <div class="tab-pane" id="plugins">
-            <h5 class="sidebar-title"><?php echo T('PLUGIN_MENU'); ?></h5>
-            <ul class="nav nav-pills nav-stacked nav-quirk">
-              <li class="nav-parent nav-active">
-                <a href=""><i class="fa fa-puzzle-piece"></i> <span><?php echo T('PLUGINS'); ?></span></a>
-                <ul class="children">
-                  <li class="info-quote">
-                    <p class="info-quote"><?php echo T('PMENU_NOTICE_TXT'); ?></p>
-                  </li>
-                  <?php foreach ($plugins as $plugin) { ?>
-                    <li>
-                      <?php if (file_exists('/srv/rutorrent/plugins/' . $plugin . '/plugin.info')) {
-                        echo "<a href=\"javascript:void()\">$plugin</a> <div class=\"toggle-wrapper pull-right\" style=\"margin-right: -10px; margin-top: 5px;\"> <div class=\"toggle-pen toggle-modern\" onclick=\"location.href='?removeplugin-$plugin=true'\"></div></div>";
-                      } else {
-                        echo "<a href=\"javascript:void()\">$plugin</a> <div class=\"toggle-wrapper pull-right\" style=\"margin-right: -10px; margin-top: 5px;\"> <div class=\"toggle-pdis toggle-modern\" onclick=\"location.href='?installplugin-$plugin=true'\"></div></div>";
-                      } ?>
-                    </li>
-                  <?php } ?>
-                </ul>
-              </li>
-            </ul>
-          </div><!-- tab-pane -->
         </div><!-- tab-content -->
       </div><!-- leftpanelinner -->
     </div><!-- leftpanel -->

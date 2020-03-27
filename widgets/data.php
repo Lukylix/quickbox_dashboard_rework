@@ -1,5 +1,4 @@
 <?php
-$interface = "INETFACE";
 session_start();
 $rx[] = @file_get_contents("/sys/class/net/INETFACE/statistics/rx_bytes");
 $tx[] = @file_get_contents("/sys/class/net/INETFACE/statistics/tx_bytes");
@@ -36,4 +35,3 @@ if (count($_SESSION['rx'])>60)
 echo '[ { "data":['.implode($_SESSION['rx'], ",").'],"label": "Download"}, ';
 echo '{ "data":['.implode($_SESSION['tx'], ",").'],"label": "Upload"} ';
 echo ']';
-?>

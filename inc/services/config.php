@@ -15,6 +15,8 @@ $master = preg_replace(
 
 define('MASTERUSER', $master);
 define('USERNAME', getUser());
+define('ISADMIN', (MASTERUSER == USERNAME));
+
 define('USER_RUNNING', processes(USERNAME));
 
 function search($data, $find, $end)
@@ -164,7 +166,7 @@ $servicesConfig = [
   'shellinabox' => [
     'menu' => false,
     'psUser' => 'shellinabox'
-  ]
+  ],
 ];
 
 /**

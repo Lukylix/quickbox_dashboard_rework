@@ -3,17 +3,10 @@ if (isset($_SESSION)) {
   session_destroy();
 }
 
-
-
-
-
 include '/srv/panel/inc/util.php';
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/class.php');
 $version = "v1.2.0";
 error_reporting(E_ERROR);
-$master = file_get_contents('/srv/panel/db/master.txt');
-$master = preg_replace('/\s+/', '', $master);
-$username = getUser();
 
 include('/srv/panel/inc/services/config.php');
 //$services is a tab of all Service object for vues / logic
@@ -25,15 +18,14 @@ foreach ($servicesConfig as $name => $configData) {
 // GET REQUEST Handle service control
 include("/srv/panel/inc/services/control.php");
 
+
 require_once($_SERVER['DOCUMENT_ROOT'] . '/inc/localize.php');
 
 // Network Interface
-$interface = 'INETFACE';
 $iface_list = array('INETFACE');
 $iface_title['INETFACE'] = 'External';
 $vnstat_bin = '/usr/bin/vnstat';
 $data_dir = './dumps';
-$byte_notation = null;
 
 
 
@@ -48,15 +40,6 @@ $panel = array(
   'active_page'       => basename($_SERVER['PHP_SELF']),
 );
 
-$time_start = microtime_float();
-
-// Timing
-function microtime_float()
-{
-  $mtime = microtime();
-  $mtime = explode(' ', $mtime);
-  return $mtime[1] + $mtime[0];
-}
 
 //Unit Conversion
 function formatsize($size)
@@ -197,32 +180,6 @@ function do_command($commandName, $args)
   return false;
 }
 
-
-function GetWMI($wmi, $strClass, $strValue = array())
-{
-  $arrData = array();
-
-  $objWEBM = $wmi->Get($strClass);
-  $arrProp = $objWEBM->Properties_;
-  $arrWEBMCol = $objWEBM->Instances_();
-  foreach ($arrWEBMCol as $objItem) {
-    @reset($arrProp);
-    $arrInstance = array();
-    foreach ($arrProp as $propItem) {
-      $value = $objItem->{$propItem->Name};
-      if (empty($strValue)) {
-        $arrInstance[$propItem->Name] = trim($value);
-      } else {
-        if (in_array($propItem->Name, $strValue)) {
-          $arrInstance[$propItem->Name] = trim($value);
-        }
-      }
-    }
-    $arrData[] = $arrInstance;
-  }
-  return $arrData;
-}
-
 //NIC flow
 $strs = @file("/proc/net/dev");
 
@@ -267,9 +224,5 @@ session_start_timeout(5);
 $MSGFILE = session_id();
 
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/lang_select.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/widgets/plugin_data.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/widgets/package_data.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/sys_data.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/widgets/theme_select.php');
-$base = 1024;
-$location = "/home";

@@ -340,8 +340,4 @@ function displayData(dataJSON) {
   }
   </style>
 
-  <style>
-  <?php include ('custom/custom.css'); ?>
-  </style>
-
 </head>

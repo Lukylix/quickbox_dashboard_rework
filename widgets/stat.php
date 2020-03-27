@@ -1,5 +1,4 @@
 <?php
-$interface = INETFACE;
 header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 $data['rec'] = exec("cat /sys/class/net/INETFACE/statistics/rx_bytes");

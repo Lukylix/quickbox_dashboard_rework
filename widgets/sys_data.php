@@ -13,5 +13,3 @@ if (isset($_GET['updateQuickBox'])) {
         header('Location: //');
         shell_exec("sudo /usr/local/bin/swizzin/box update");
 }
-
-?>

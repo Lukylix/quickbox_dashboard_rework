@@ -16,25 +16,6 @@ $deluged = processExists("deluged",$username);
 $delugedweb = processExists("deluge-web",$username);
 $rtorrent = processExists("rtorrent",$username);
 
-//Unit Conversion
-function formatsize($size) {
-  $danwei=array(' B ',' KB ',' MB ',' GB ',' TB ');
-  $allsize=array();
-  $i=0;
-  for($i = 0; $i <5; $i++) {
-    if(floor($size/pow(1024,$i))==0){break;}
-  }
-  for($l = $i-1; $l >=0; $l--) {
-    $allsize1[$l]=floor($size/pow(1024,$l));
-    $allsize[$l]=$allsize1[$l]-$allsize1[$l+1]*1024;
-  }
-  $len=count($allsize);
-  for($j = $len-1; $j >=0; $j--) {
-    $fsize=$fsize.$allsize[$j].$danwei[$j];
-  }
-  return $fsize;
-}
-
 $location = "/home";
 $base = 1024;
 $si_prefix = array( 'b', 'k', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB' );
