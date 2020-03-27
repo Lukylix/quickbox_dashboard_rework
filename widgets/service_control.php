@@ -30,7 +30,7 @@ include('..inc/panel.menu.php');
               }
               ?>
               <td><span id="appstat_rtorrent"></span> RTorrent <span class="tooltips" data-toggle="tooltip" title="scgi_port: <?php echo $scgiport; ?>" data-placement="right"><i class="tooltips fa fa-usb"></i><span></td>
-              <td class="text-center"><a href="javascript:;" onclick="location.href='?id=88&servicestart=rtorrent'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
+              <td class="text-center"><a href="javascript:;" onclick="location.href='?service=rtorrent&action=restart'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
               <td class="text-center"><?php echo $services['rtorrent']->getHtmlSwitch(); ?></td>
             </tr>
           <?php } ?>
@@ -38,12 +38,12 @@ include('..inc/panel.menu.php');
           <?php if (file_exists("/install/.deluge.lock")) { ?>
             <tr>
               <td><span id="appstat_deluged"></span> DelugeD </td>
-              <td class="text-center"><a href="javascript:;" onclick="location.href='?id=88&servicestart=deluged'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
+              <td class="text-center"><a href="javascript:;" onclick="location.href='?service=deluged&action=restart'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
               <td class="text-center"><?php echo $services['deluged']->getHtmlSwitch(); ?></td>
             </tr>
             <tr>
               <td><span id="appstat_delugeweb"></span> Deluge Web </td>
-              <td class="text-center"><a href="javascript:;" onclick="location.href='?id=88&servicestart=delugeweb'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
+              <td class="text-center"><a href="javascript:;" onclick="location.href='?service=deluge-web&action=restart'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
               <td class="text-center"><?php echo $service['deluged-web']->getHtmlSwitch(); ?></td>
             </tr>
           <?php } ?>
@@ -53,7 +53,7 @@ include('..inc/panel.menu.php');
             if ($service->process && file_exists('/install/.' . $name . '.lock') && $name != 'rtorrent') : ?>
               <tr>
                 <td><span id="appstat_<?php echo $name ?>"></span> <?php echo $service->displayName ?> </td>
-                <td class="text-center"><a href="javascript:;" onclick="location.href='?id=88&servicestart=<?php echo $name ?>'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
+                <td class="text-center"><a href="javascript:;" onclick="location.href='?service=<?php echo $name ?>&action=restart'" class="btn btn-xs btn-default"><i class="fa fa-refresh text-info"></i> <?php echo T('REFRESH'); ?></a></td>
                 <td class="text-center"><?php echo $service->getHtmlSwitch(); ?></td>
               </tr>
           <?php
