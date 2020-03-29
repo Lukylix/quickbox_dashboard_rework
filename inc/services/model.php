@@ -37,7 +37,7 @@ class Service
   //Call this function if you need to display html
   function getHtmlSwitch()
   {
-    if (file_exists('/etc/systemd/system/multi-user.target.wants/' . $this->psName . '@' . (isset($this->psUser) && $this->psUser != '' ? $this->psUser : USERNAME) . '.service') || file_exists('/etc/systemd/system/multi-user.target.wants/' .  $this->psName . '.service')) {
+    if (file_exists('/etc/systemd/system/multi-user.target.wants/' . $this->serviceName . '@' . (isset($this->psUser) && $this->psUser != '' ? $this->psUser : USERNAME) . '.service') || file_exists('/etc/systemd/system/multi-user.target.wants/' .  $this->serviceName . '.service')) {
       return " <div class=\"toggle-wrapper text-center\"> <div class=\"toggle-en toggle-light primary\" onclick=\"location.href='?service=" . $this->name . "&action=stop'\"></div></div>";
     } else {
       return " <div class=\"toggle-wrapper text-center\"> <div class=\"toggle-dis toggle-light primary\" onclick=\"location.href='?service=" . $this->name . "&action=start'\"></div></div>";
