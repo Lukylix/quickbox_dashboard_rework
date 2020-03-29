@@ -1,10 +1,3 @@
-<?php
-function getValidJsFunctionName(string $name)
-{
-  return preg_replace('/[^a-zA-Z0-9]+/', '', $name);
-}
-?>
-
 <script type="text/javascript">
   $(document).ready(function() {
     /////////////////////////////////////////////
