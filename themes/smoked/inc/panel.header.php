@@ -32,7 +32,6 @@
   <script type="text/javascript" src="lib/flot/jquery.flot.resize.js"></script>
   <script type="text/javascript" src="lib/flot/jquery.flot.canvas.js"></script>
   <script type="text/javascript" src="lib/flot-spline/jquery.flot.spline.js"></script>
-  <!--script type="text/javascript" src="lib/flot/jquery.flot.axislabels.js"></script-->
 
   <!--///// BANDWIDTH CHART /////-->
   <script id="source" language="javascript" type="text/javascript">

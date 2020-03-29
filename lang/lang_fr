@@ -146,8 +146,6 @@ $L['ZNC'] = 'ZNC est un bouncer IRC sous licence GPL. Celui-ci sera connecté en
 
 // package management center buttons
 $L['CLI'] = 'Console Web Seulement';
-$L['INSTALL'] = 'Installer';
-$L['INSTALLED'] = 'Installé';
 $L['OVPN_TOOLTIP_I'] = 'Accedez à cette fonctionnalité depuis votre console web en tapant: quickVPN.';
 $L['OVPN_TOOLTIP_U'] = 'Accedez à cette fonctionnalité depuis votre console web en tapant: quickVPN.';
 $L['BOX'] = 'BOX requis';
@@ -267,12 +265,6 @@ $L['UPTIME'] = 'Uptime';
 $L['ENABLED'] = 'Activé';
 $L['DISABLED'] = 'Désactivé';
 
-$L['INSTALLED'] = 'Installé';
-$L['UNINSTALLED'] = 'Désinstallé';
-$L['INSTALLING'] = 'Installation';
-$L['UNINSTALLING'] = 'Désinstallation';
-
-
 ////////////////////////////////////////
 //STATUS BUTTONS
 ///////////////////////////////////////
@@ -306,49 +298,10 @@ $L['USED_L'] = 'utilisé';
 //MODALS & POPUP NOTICES
 ///////////////////////////////////////
 
-//MODAL TITLES
-$L['UNINSTALL_TITLE'] = 'Désinstaller';
-
-//MODAL TEXT
-$L['UNINSTALL_BTSYNC_TXT'] = 'Vous êtes sur le point de désinstaller BitTorrent Sync de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de dossiers partagés ... cette action est irréversible. <br/><br/>Vous pouvez réinstaller BitTorrent Sync à tout moment, cependant, vos chemin de stockage et les paramètres des dossiers liés seront réinitialisés.';
-$L['UNINSTALL_CSF_TXT'] = 'Vous êtes sur le point de désinstaller Config Server Firewall (CSF) de votre système.<br/><br/>Cela va complètement supprimer tous ses paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Config Server Firewall (CSF) à tout moment, cependant, vos paramètres de configuration (si des modifications ont été apportées) seront réinitialisés.';
-$L['UNINSTALL_COUCHPOTATO_TXT'] = 'Vous êtes sur le point de désinstaller CouchPotato de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller CouchPotato à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_DELUGE_TXT'] = 'Vous êtes sur le point de désinstaller Deluge de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de dossiers partagés pour <strong>tous les utilisateurs</strong>... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Deluge à tout moment, cependant, vos chemins de stockage et les paramètres des dossiers liés seront réinitialisés.';
-$L['UNINSTALL_EMBY_TXT'] = 'Vous êtes sur le point de désinstaller Emby de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de dossiers partagés... cette action est irréversible. <br/><br/>Vous pouvez réinstaller CouchPotato à tout moment, cependant, vos chemins de stockage et les paramètres des dossiers liés seront réinitialisés.';
-$L['UNINSTALL_HEADPHONES_TXT'] = 'Vous êtes sur le point de désinstaller Headphones de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de dossiers partagés... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Headphones à tout moment, cependant, vos chemins de stockage et les paramètres des dossiers liés seront réinitialisés.';
-$L['UNINSTALL_JACKETT_TXT'] = 'Vous êtes sur le point de désinstaller Jackett de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Jackett à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_MEDUSA_TXT'] = 'Vous êtes sur le point de désinstaller Medusa de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Medusa à tout moment, cependant, vos paramètres de configuration seront réinitialisés.';
-$L['UNINSTALL_NEXTCLOUD_TXT'] = 'Vous êtes sur le point de désinstaller NextCloud de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller NextCloud à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_NZBGET_TXT'] = 'Vous êtes sur le point de désinstaller NZBGet de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller NZBGet à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_NZBHYDRA_TXT'] = 'Vous êtes sur le point de désinstaller NZBHydra de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller NZBHydra à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_OMBI_TXT'] = 'Vous êtes sur le point de désinstaller Ombi de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de librairies... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Ombi à tout moment, cependant, vos paramètres de librairies et vos requêtes en cours seront réinitialisés.';
-$L['UNINSTALL_PLEX_TXT'] = 'Vous êtes sur le point de désinstaller Plex Media Server de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de librairies... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Plex à tout moment, cependant, vos paramètres et librairies seront réinitialisés.';
-$L['UNINSTALL_TAUTULLI_TXT'] = 'Vous êtes sur le point de désinstaller Tautulli de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres de librairies... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Tautulli à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_PYLOAD_TXT'] = 'Vous êtes sur le point de désinstaller pyLoad de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller pyLoad à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_QUASSEL_TXT'] = 'Vous êtes sur le point de désinstaller Quassel de votre système.<br/><br/>Cela va complètement supprimer Quassel et tous ses paramètres / logs de votre système.';
-$L['UNINSTALL_QUOTAS_TXT'] = 'Vous êtes sur le point de désinstaller Quotas de votre système.<br/><br/>Cela va complètement supprimer les Quotas de vos utilisateurs et tout paramètres associés avec eux.';
-$L['UNINSTALL_RADARR_TXT'] = 'Vous êtes sur le point de désinstaller Radarr de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Radarr à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_RAPIDLEECH_TXT'] = 'Vous êtes sur le point de désinstaller Rapidleech de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Rapidleech à tout moment, cependant, vos paramètres de configuration seront réinitialisés.';
-$L['UNINSTALL_SABNZBD_TXT'] = 'Vous êtes sur le point de désinstaller SABnzbd de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller SABnzbd à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_SICKGEAR_TXT'] = 'Vous êtes sur le point de désinstaller SickGear de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller SickGear à tout moment, cependant, vos paramètres de configuration seront réinitialisés.';
-$L['UNINSTALL_sickchill_TXT'] = 'Vous êtes sur le point de désinstaller sickchill de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller sickchill à tout moment, cependant, vos paramètres de configuration seront réinitialisés.';
-$L['UNINSTALL_SONARR_TXT'] = 'Vous êtes sur le point de désinstaller Sonarr de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Sonarr-NzbDrone à tout moment, cependant, vos paramètres de configuration seront réinitialisés.';
-$L['UNINSTALL_SUBSONIC_TXT'] = 'Vous êtes sur le point de désinstaller Subsonic de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Subsonic à tout moment, cependant, vos paramètres seront réinitialisés.';
-$L['UNINSTALL_SYNCTHING_TXT'] = 'Vous êtes sur le point de désinstaller Syncthing de votre système.<br/><br/>Cela va complètement supprimer tous ses paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller Syncthing à tout moment, cependant, vos paramètres de configuration seront réinitialisés.';
-$L['UNINSTALL_X2GO_TXT'] = 'Vous êtes sur le point de désinstaller x2go de votre système.<br/><br/>Cela va complètement supprimer x2goserver et l\'environnement de bureau xfce4 de votre système.';
-$L['UNINSTALL_ZNC_TXT'] = 'Vous êtes sur le point de désinstaller ZNC de votre système.<br/><br/>Cela va complètement supprimer toutes ses configurations et paramètres... cette action est irréversible. <br/><br/>Vous pouvez réinstaller ZNC à tout moment, cependant, vos paramètres seront réinitialisés.';
 $L['THEME_CHANGE_TXT'] = 'Vous allez changer de thème. Si le thème ne s\'affiche pas correctement après le rafraîchissement, il vous faudra probablement effacer le cache de votre navigateur et réessayer.';
 
 //SYSTEM RESPONSE MODAL
 $L['SYSTEM_RESPONSE_TITLE'] = 'Réponse Système';
-
-//GRITTER POPUPS
-$L['UNINSTALLING_TITLE'] = 'Désinstallation';
-
-//GRITTER TEXT
-$L['UNINSTALLING_TXT_1'] = 'Patientez pendant que';
-$L['UNINSTALLING_TXT_2'] = 'soit désinstallé de votre système.';
-
 
 ////////////////////////////////////////////////////////////////////////////
 // SAMPLE
