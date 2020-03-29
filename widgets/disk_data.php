@@ -12,9 +12,6 @@ function processExists($processName, $username) {
   }
   return $exists;
 }
-$deluged = processExists("deluged",$username);
-$delugedweb = processExists("deluge-web",$username);
-$rtorrent = processExists("rtorrent",$username);
 
 $location = "/home";
 $base = 1024;

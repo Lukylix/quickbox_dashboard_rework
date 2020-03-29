@@ -12,9 +12,6 @@ function processExists($processName, $username) {
   }
   return $exists;
 }
-$deluged = processExists("deluged",$username);
-$delugedweb = processExists("deluge-web",$username);
-$rtorrent = processExists("rtorrent",$username);
 
 $location = "/home";
 $base = 1024;
@@ -33,7 +30,6 @@ if (file_exists('/install/.quota.lock')) {
   $perused = sprintf('%1.0f', $dfused / $dftotal * 100);
 
 } else {
-
   $bytesfree = disk_free_space('/home');
   $class = min((int)log($bytesfree,$base),count($si_prefix) - 1); $bytestotal = disk_total_space($location);
   $class = min((int)log($bytesfree,$base),count($si_prefix) - 1); $bytesused = $bytestotal - $bytesfree;
@@ -43,7 +39,7 @@ if (file_exists('/install/.quota.lock')) {
     $totalSpace = $diskStatus->totalSpace();
     $barWidth = ($diskStatus->usedSpace()/500) * 500;
   } catch (Exception $e) {
-    $spacebodyerr .= 'Error ('.$e-getMessage().')';
+    $spacebodyerr .= 'Error ('.$e->getMessage().')';
     exit();
   }
   //hard disk

@@ -535,43 +535,7 @@
 <script src="lib/jquery-knob/jquery.knob.js"></script>
 <script src="lib/jquery.gritter/jquery.gritter.js"></script>
 <script src="js/quick.js"></script>
-<script src="js/lobipanel.js"></script>
-<script>
-  $(function(){
-    //$('.lobipanel').lobiPanel();
-    $('.panel').lobiPanel({
-      reload: {
-        icon: 'fa fa-refresh'
-      },
-      unpin: {
-        icon: 'fa fa-arrows'
-      },
-      minimize: {
-        icon: 'fa fa-chevron-up',
-        icon2: 'fa fa-chevron-down'
-      },
-      close: {
-        icon: 'fa fa-times-circle'
-      },
-      expand: {
-        icon: 'fa fa-expand',
-        icon2: 'fa fa-compress'
-      },
-      dropdown: {
-        icon: 'fa fa-cog'
-      },
-      close: false,
-      save: true,
-      sortable: true,
-      stateful: true,
-      draggable: true,
-      reload: false,
-      resize: true,
-      editTitle: false,
-      expand: false
-    });
-  });
-</script>
+
 
 <script>
   $(function(){

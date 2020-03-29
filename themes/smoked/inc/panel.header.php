@@ -18,15 +18,12 @@
   <!-- CSS STYLESHEETS AND ASSETTS -->
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/ico">
   <link rel="stylesheet" href="lib/jquery-ui/jquery-ui.css">
-  <link rel="stylesheet" href="lib/Hover/hover.css">
   <link rel="stylesheet" href="lib/jquery-toggles/toggles-full.css">
   <link rel="stylesheet" href="lib/jquery.gritter/jquery.gritter.css">
   <link rel="stylesheet" href="lib/animate.css/animate.css">
   <link rel="stylesheet" href="lib/font-awesome/font-awesome.css">
-  <link rel="stylesheet" href="lib/ionicons/css/ionicons.css">
   <link rel="stylesheet" href="lib/select2/select2.css">
   <link rel="stylesheet" href="skins/quick.css">
-  <link rel="stylesheet" href="skins/lobipanel.css" />
   <!-- JAVASCRIPT -->
   <script src="lib/modernizr/modernizr.js"></script>
   <script src="lib/jquery/jquery.js"></script>
@@ -143,6 +140,7 @@
         }
         setTimeout(fetchData, 30);
       }
+      window.onresize();
     });
   </script>
   <!--///// CPU CHART /////-->
