@@ -290,7 +290,9 @@
     });
   </script>
 
-  <script type="text/javascript" src="inc/panel.app_status.ajax.js"></script>
+  <script type="text/javascript" src="inc/panel.widgets.ajax.js"></script>
+
+  <?php include('inc/panel.app_status.ajax.js.php'); ?>
 
   <script type="text/javascript">
     $(document).ready(function() {
