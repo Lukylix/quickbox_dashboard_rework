@@ -10,25 +10,26 @@ function getValidJsFunctionName(string $name)
     /////////////////////////////////////////////
     // BEGIN AJAX APP CALLS ON SERVICE STATUS //
     ///////////////////////////////////////////
-    <?php foreach ($services as $name => $service) :
-      if ($service->process) :
-        $validJsfncName = getValidJsFunctionName($name); ?>
-
-        function appstat_<?php echo $validJsfncName ?>() {
-          $.ajax({
-            url: "widgets/app_status.php?name=<?php echo $name ?>",
-            cache: false,
-            success: function(result) {
-              $('#appstat_<?php echo $name ?>').html(result);
-              setTimeout(function() {
-                appstat_<?php echo $validJsfncName ?>()
-              }, 5000);
-            }
-          });
-        }
-        appstat_<?php echo $validJsfncName ?>();
-    <?php
-      endif;
-    endforeach; ?>
+    function appstats() {
+      <?php
+      foreach ($services as $name => $service) :
+        if ($service->process) : ?>
+          if ($('#appstat_<?php echo $name ?>').length > 0) {
+            $.ajax({
+              url: "widgets/app_status.php?name=<?php echo $name ?>",
+              cache: false,
+              success: function(result) {
+                $('#appstat_<?php echo $name ?>').html(result);
+              }
+            });
+          }
+      <?php
+        endif;
+      endforeach; ?>
+      setTimeout(function() {
+        appstats()
+      }, 5000);
+    }
+    appstats();
   });
 </script>
