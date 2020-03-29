@@ -1,80 +1,81 @@
-# quickbox_themes
-All additional themes for the QuickBox Dashboard are housed here... nice and tidy like! Want to make your own? Fork and submit!
+# Overview
+## Origin
 
-### Want to install the QuickBox Smoked Theme?
+This dashbord come from :  
+https://github.com/liaralabs/quickbox_dashboard  (a fork of the one made by the quickbox team)  
+It's/Was used in the swizzin seedbox solution :  
+https://github.com/liaralabs/swizzin
 
-#### First you'll need to navigate to your dashboard directory
+## Description
 
-```
-cd /srv/panel
-```
+This is a web panel displaying some useful informations about your seedbox environment,   
+including net data, up time, disk usage, cpu usage etc..  
+It also include a service control center and links for your seedbox apps.
 
-#### Next, you'll need to initialize the directory with git
+## Goal
 
-```
-git init
-git remote add -t \* -f origin https://github.com/QuickBox/quickbox_themes.git
-```
+Having the same or even more functionalities  
+with less code, overall better maintainability and ease of menus/services addition.
 
-You'll now see the themes which are organized into separate origins
+---
+# Actual state
+## Code size
 
-> #### Heads Up!
-origin/master is not a theme and only contains basic readme intros for the themes to be added
+<table>
+  <tr>
+    <th scope="col">Language</th>
+    <th scope="col">Original</th>
+    <th scope="col">Now</th>
+  </tr>
+  <tr>
+    <td>PHP and JS</td>
+    <td>3509 K</td>
+    <td>2289 K</td>
+  </tr>
+  <tr>
+    <td>JS </td>
+    <td>3089 K</td>
+    <td>2097 K</td>
+  </tr>
+  <tr>
+    <td>PHP </td>
+    <td>420 K</td>
+    <td>192 K</td>
+  </tr>
+</table>
 
-```
-Updating origin
-remote: Counting objects: 444, done.
-remote: Compressing objects: 100% (397/397), done.
-remote: Total 444 (delta 43), reused 430 (delta 33), pack-reused 0
-Receiving objects: 100% (444/444), 2.13 MiB | 3.93 MiB/s, done.
-Resolving deltas: 100% (43/43), done.
-From https://github.com/QuickBox/quickbox_themes
- * [new branch]      defaulted  -> origin/defaulted
- * [new branch]      master     -> origin/master
- * [new branch]      smoked     -> origin/smoked
-```
+Overall code size reduced by `33.51%` (php and js)  
+![Overall code reduction progress bar](https://github.com/Lukylix/Repos_Images/raw/master/quickbox_dashboard_rework/progress_php_js.png)
 
-#### Now fetch the themes repository
+PHP code size reduced by `44.76%`  
+![Overall code reduction progress bar](https://github.com/Lukylix/Repos_Images/raw/master/quickbox_dashboard_rework/progress_php.png)
 
-```
-git fetch --all
-```
+## Sreenshot
 
-#### Finally, you can use the theme with the following
-
-**For the 'Smoked' theme**
-```
-git reset --hard origin/smoked
-```
-**For the 'Defaulted' theme** (QuickBox default dashboard theme)
-```
-git reset --hard origin/defaulted
-```
-
-> You may need to restart apache to see these changes go into effect immediately. You can do so with `service apache2 restart`
+![Panel screenshot](https://github.com/Lukylix/Repos_Images/raw/master/quickbox_dashboard_rework/full_panel.png)
 
 ---
 
-### Need to update the theme?
-
-**For the 'Smoked' theme**
+## Random infos
+### Command used to get file size:
+```bash
+ls -s --block-size=1K $(find . -type f | egrep "*\.(php|js)$") | cut -d '.' -f 1 | paste -sd+ - | bc
 ```
-cd /srv/panel
-git pull origin smoked
-```
-
-**For the 'Defaulted' theme**
-```
-cd /srv/panel
-git pull origin defaulted
-```
-
-Simple as that! You will then see output such as:
-```
-From https://github.com/QuickBox/quickbox_themes
- * branch            smoked     -> FETCH_HEAD
-Updating d8b7dfd..d2efa50
-Fast-forward
- README.md | 42 ++++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 42 insertions(+)
-```
+In order we got :  
+1. Get a list of all php or js files
+    ```bash
+    find . -type f | egrep "*\.(php|js)$"
+    ```
+2. Get the size in K of those files
+    ```bash
+    ls -s --block-size=1K $(...)
+    ```
+3. Remove files name from the list
+    ```bash
+    cut -d '.' -f 1 
+    ```
+4. Chain all numbers with '+' as separator
+    ```bash
+    paste -sd+ -
+    ```
+5. Execute the string (add all numbers)
